@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="jquery.cookie.min.js"></script>
+</head>
+<body>
+  javascript で Cookie保存テスト
+
+<script>
+  // 自動JSON化を有効に
+  $.cookie.json = true;
+
+  // URLを取得
+  let url = new URL(window.location.href);
+  // URLSearchParamsオブジェクトを取得
+  let params = url.searchParams;
+
+  // getパラメータ取得
+  let mopoa = params.get('mopoa');
+
+  let mopo = {};
+  if (mopoa) {
+    mopo = {
+      id: mopoa,
+      kind: 'mopoa',
+      referer: document.referrer
+    };
+  }
+
+  // クッキー保存
+  if (Object.keys(mopo).length) {
+    $.cookie('mopo', mopo);
+  }
+
+  // クッキー取得
+  mopo = $.cookie('mopo');
+
+  console.log(mopoa);
+  console.log(mopo);
+</script>
+  
+</body>
+</html>
